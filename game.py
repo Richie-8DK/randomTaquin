@@ -33,12 +33,15 @@ def create_field():
     return field
 
 def start(size):
+    global imgh, imgw
+    imgw, imgh = size
+    size = size[0]*3, size[1]*3
     # start pygame
     pygame.init()
 
     # create screen
     global screen
-    screen = pygame.display.set_mode(size)
+    screen = pygame.display.set_mode(size, pygame.RESIZABLE)
 
     # create field out of tiles
     global field
@@ -165,5 +168,3 @@ def won():
         for tile in line:
             screen.blit(tile.owner, tile)
     pygame.display.flip()
-
-start((973, 340))
