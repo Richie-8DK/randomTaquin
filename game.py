@@ -2,9 +2,6 @@ import sys, pygame
 from random import choice
 from math import floor
 
-black = 0, 0, 0
-imgh = 113
-imgw = 324
 
 field = []
 
@@ -32,16 +29,18 @@ def create_field():
         field.append(line)
     return field
 
-def start(size):
+def start(size, rows=3, columns=3):
+    # set size
     global imgh, imgw
     imgw, imgh = size
-    size = size[0]*3, size[1]*3
+    size = size[0] * columns, size[1] * rows
+
     # start pygame
     pygame.init()
 
     # create screen
     global screen
-    screen = pygame.display.set_mode(size, pygame.RESIZABLE)
+    screen = pygame.display.set_mode(size)
 
     # create field out of tiles
     global field
@@ -96,7 +95,7 @@ def handle_events(event):
         turn((row, column), freeTile)
 
 def draw():
-    screen.fill(black)
+    screen.fill((127, 127, 127)) # grey
     for line in field:
         for tile in line:
             if tile.taken:
@@ -163,7 +162,7 @@ def check():
     return True
 
 def won():
-    screen.fill(black)
+    screen.fill((127, 127, 127))
     for line in field:
         for tile in line:
             screen.blit(tile.owner, tile)
