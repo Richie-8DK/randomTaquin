@@ -1,6 +1,8 @@
 # randomTaquin
 A puzzle game named Taquin Jigsaw with random images.
 
+![Example](Example.png)
+
 ## dependences:
 - pygame
 - requests
